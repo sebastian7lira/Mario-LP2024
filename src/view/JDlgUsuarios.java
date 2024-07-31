@@ -15,13 +15,13 @@ import java.util.logging.Logger;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.UtilMsl;
-import viewPesquisa.JDlgUsuariosPesquisa;
+
 /**
  *
  * @author Sebas ;0
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
-    private JDlgUsuariosPesquisa jDlgUsuariosPesquisa;
+    
     private boolean incl;
     MaskFormatter maskcpf;
     MaskFormatter maskdata;
@@ -53,63 +53,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         
         
         }
-     public UsuariosMsl viewBean() {
-         /*SetarId*/
-        UsuariosMsl usuariosMsl = new UsuariosMsl();
-        int id = UtilMsl.strInt(JTxtCodigo_msl.getText());
-        usuariosMsl.setIdusuariosMsl(id);
-        /*SetarDatas*/
-        Date dataNascimento = UtilMsl.strDate(jFmtData_msl.getText());
-        usuariosMsl.setDataNascMsl(dataNascimento);
-        /*SetarTextos*/
-        usuariosMsl.setNomeMsl(JTxtNome_msl.getText());
-        usuariosMsl.setEmailMsl(JTxtEmail_msl.getText());
-        usuariosMsl.setCpfMsl(jFmtCpf_msl.getText());
-        usuariosMsl.setSenhaMsl(jPwfSenha_msl.getText());
-        /*SetarCombo*/
-        if ((JCboSexo_msl.getSelectedIndex() == 1)) {
-            usuariosMsl.setSexoMsl("Masculino");
-        }else {
-            usuariosMsl.setSexoMsl("Feminino");
-        }
-        
-        if(jChbAtivo_msl.isSelected() == true){
-        usuariosMsl.setAtivoMsl("S");
-        } else {
-        usuariosMsl.setAtivoMsl("N");
-        }
-        return usuariosMsl;
-
-    }
-
-    public void beanView(UsuariosMsl usuariosMsl) {
-        /*SetarId*/
-        String intStr = UtilMsl.intStr(usuariosMsl.getIdusuariosMsl());
-        JTxtCodigo_msl.setText(intStr);
-        /*SetarDatas*/
-        String dataNascimento = UtilMsl.dateStr(usuariosMsl.getDataNascMsl());
-        jFmtData_msl.setText(dataNascimento);
-        
-        JTxtNome_msl.setText(usuariosMsl.getNomeMsl());
-        JTxtEmail_msl.setText(usuariosMsl.getEmailMsl());
-        jFmtCpf_msl.setText(usuariosMsl.getCpfMsl());
-        jPwfSenha_msl.setText(usuariosMsl.getSenhaMsl());
-        
-        /*SetarCombos*/
-        String sexo = usuariosMsl.getSexoMsl();
-        if(sexo.equals("M")){
-            JCboSexo_msl.setSelectedIndex(0);
-        }else {
-            JCboSexo_msl.setSelectedIndex(1);
-        }
-        
-        if(usuariosMsl.getAtivoMsl().equals("S") == true){
-            jChbAtivo_msl.setSelected(true);
-        } else {
-            jChbAtivo_msl.setSelected(false);
-        }
-        
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -376,9 +319,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
     if (UtilMsl.perguntar("Deseja excluir o registro?") == true) {
-        UsuariosMsl usuariosMsl = viewBean();
-        UsuariosDAO usuariosDAO = new UsuariosDAO();
-        usuariosDAO.delete(usuariosMsl);
         UtilMsl.mensagem("Registro Excluido.");
     }else{
         UtilMsl.mensagem("Exclusão Cancelada.");
@@ -387,16 +327,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-    UsuariosMsl usuarioMsl = viewBean();
-    UsuariosDAO usuarioDAO = new UsuariosDAO();
     
-    if (incl == true) {
-        usuarioDAO.insert(usuarioMsl);
-        UtilMsl.mensagem("Registro incluido com sucesso.");
-    } else {
-        usuarioDAO.update(usuarioMsl);
-        UtilMsl.mensagem("Registro alterado com sucesso.");
-        }
     
         UtilMsl.habilitar(false, jBtnAlterar,jBtnCancelar,jBtnConfirmar,jBtnExcluir,JTxtCodigo_msl,jFmtCpf_msl,jChbAtivo_msl,JTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboSexo_msl,jPwfSenha_msl);
         UtilMsl.habilitar(true, jBtnIncluir,jBtnPesquisar);
@@ -404,10 +335,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        jDlgUsuariosPesquisa = new JDlgUsuariosPesquisa(null, true);
-        jDlgUsuariosPesquisa.setTitle("Pesquisar");
-        jDlgUsuariosPesquisa.setTelaAnterior(this);
-        jDlgUsuariosPesquisa.setVisible(true);
+        
+        
         UtilMsl.habilitar(true, jBtnAlterar, jBtnIncluir, jBtnExcluir);
         UtilMsl.habilitar(false, jBtnCancelar, jBtnConfirmar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
@@ -465,19 +394,19 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCboSexo_msl;
-    private javax.swing.JTextField JTxtCodigo_msl;
-    private javax.swing.JFormattedTextField JTxtEmail_msl;
-    private javax.swing.JTextField JTxtNome_msl;
+    javax.swing.JComboBox<String> JCboSexo_msl;
+    javax.swing.JTextField JTxtCodigo_msl;
+    javax.swing.JFormattedTextField JTxtEmail_msl;
+    javax.swing.JTextField JTxtNome_msl;
     private javax.swing.JButton jBtnAlterar;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnConfirmar;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JCheckBox jChbAtivo_msl;
-    private javax.swing.JFormattedTextField jFmtCpf_msl;
-    private javax.swing.JFormattedTextField jFmtData_msl;
+    javax.swing.JCheckBox jChbAtivo_msl;
+    javax.swing.JFormattedTextField jFmtCpf_msl;
+    javax.swing.JFormattedTextField jFmtData_msl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -486,6 +415,6 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPwfSenha_msl;
+    javax.swing.JPasswordField jPwfSenha_msl;
     // End of variables declaration//GEN-END:variables
 }

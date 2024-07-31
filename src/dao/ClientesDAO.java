@@ -6,7 +6,7 @@
 package dao;
 
 
-import bean.ClientesMsl;
+import bean.ClienteMsl;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -43,8 +43,8 @@ public class ClientesDAO extends DAO_Abstract {
     @Override
     public Object list(int id) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClientesMsl.class);
-        criteria.add(Restrictions.eq("idClientes_dbc", id));
+        Criteria criteria = session.createCriteria(ClienteMsl.class);
+        criteria.add(Restrictions.eq("idCliente_dbc", id));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
@@ -54,43 +54,12 @@ public class ClientesDAO extends DAO_Abstract {
     @Override
     public List listAll() {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClientesMsl.class);
+        Criteria criteria = session.createCriteria(ClienteMsl.class);
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
         
     }
-    public List listNome(String nome) {
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClientesMsl.class);
-        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
-        List lista = criteria.list();
-        session.getTransaction().commit();
-        return lista;
-    }
-    public List listCpf(String cpf) {
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClientesMsl.class);
-        criteria.add(Restrictions.like("cpfMsl", "%" + cpf + "%"));
-        List lista = criteria.list();
-        session.getTransaction().commit();
-        return lista;
-    }
-    public List listNomeCpf(String nome, String cpf) {
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClientesMsl.class);
-        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
-        criteria.add(Restrictions.like("cpfMsl", "%" + cpf + "%"));
-        List lista = criteria.list();
-        session.getTransaction().commit();
-        return lista;
-    }
-    public static void main(String[] args) {
-        ClientesDAO ClientesDAO = new ClientesDAO();
-        List lista = ClientesDAO.listNome("nome que você está procurando");
-        for (Object clientesMsl : lista) {
-            System.out.println("nome:" + ((ClientesMsl)clientesMsl).getNomeMsl());
-        }
-    }
+
 
 }

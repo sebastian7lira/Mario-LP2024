@@ -6,7 +6,7 @@
 package dao;
 
 
-import bean.ClientesMsl;
+import bean.ClienteMsl;
 import bean.VendasMsl;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -45,7 +45,7 @@ public class VendasDAO extends DAO_Abstract {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendasMsl.class);
-        criteria.add(Restrictions.eq("idvendas_msl", id));
+        criteria.add(Restrictions.eq("idvendasMsl", id));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
@@ -64,7 +64,7 @@ public class VendasDAO extends DAO_Abstract {
     public List listNome(String nome) {
     session.beginTransaction();
     Criteria criteria = session.createCriteria(VendasMsl.class);
-    criteria.createAlias("clientesMsl", "clientes"); // Alias para a associação entre VendasMsl e ClientesMsl
+    criteria.createAlias("clientesMsl", "clientes"); // Alias para a associação entre VendasMsl e ClienteMsl
     criteria.add(Restrictions.like("clientes.nomeMsl", "%" + nome + "%"));
     List lista = criteria.list();
     session.getTransaction().commit();
@@ -83,7 +83,7 @@ public List listValor(double valor) {
 public List listNomeValor(String nome, double valor) {
     session.beginTransaction();
     Criteria criteria = session.createCriteria(VendasMsl.class);
-    criteria.createAlias("clientesMsl", "clientes"); // Alias para a associação entre VendasMsl e ClientesMsl
+    criteria.createAlias("clientesMsl", "clientes"); // Alias para a associação entre VendasMsl e ClienteMsl
     criteria.add(Restrictions.like("clientes.nomeMsl", "%" + nome + "%"));
     criteria.add(Restrictions.eq("valorTotalMsl", valor));
     List lista = criteria.list();

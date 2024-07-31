@@ -329,14 +329,6 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-                
-        if(inclusao){
-            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-            funcionarioDAO.insert(viewBean());
-        }else{
-            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-            funcionarioDAO.update(viewBean());
-        }
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -364,40 +356,6 @@ public class JDlgFuncionarioNovoIA extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtApelido_jmbvActionPerformed
 
-    public FuncionarioMsl viewBean() {
-        FuncionarioMsl vendedor = new FuncionarioMsl();     
-        vendedor.setIdvendedorMsl(Util.strInt(jTxtCodigomsl.getText()));
-        vendedor.setNomeMsl(jTxtNomemsl.getText());
-        vendedor.setCpfMsl(jFmtCpfmsl.getText());
-        //data
-        vendedor.setDataNascimentoMsl(Util.strDate(jFmtDataNascimentomsl.getText()));
-        vendedor.setCepMsl(jFmtCepmsl.getText());
-        vendedor.setEnderecoMsl(jTxtEnderecomsl.getText());
-        vendedor.setNumeroMsl(jFmtCelularmsl.getText());
-        vendedor.setBairroMsl(jTxtBairromsl.getText());
-        vendedor.setComplementoMsl(jTxtComplementomsl.getText());
-        vendedor.setEmailMsl(jTxtEmailmsl.getText());
-        vendedor.setRgMsl(jFmtRgmsl.getText());
-
-      
-        return vendedor;
-    }
-    public FuncionarioMsl beanView(FuncionarioMsl vendedor) {
-        jTxtCodigomsl.setText(Util.intStr(vendedor.getIdvendedorMsl()));
-        jTxtNomemsl.setText(vendedor.getNomeMsl());
-        jFmtCpfmsl.setText(vendedor.getCpfMsl());
-        jFmtDataNascimentomsl.setText(Util.dateStr(vendedor.getDataNascimentoMsl()));
-        jFmtCepmsl.setText(vendedor.getCepMsl());
-        jTxtEnderecomsl.setText(vendedor.getEnderecoMsl());
-        jFmtCelularmsl.setText(vendedor.getNumeroMsl());
-        jTxtBairromsl.setText(vendedor.getBairroMsl());
-        jTxtComplementomsl.setText(vendedor.getComplementoMsl());
-        jTxtEmailmsl.setText(vendedor.getEmailMsl());
-        jFmtRgmsl.setText(vendedor.getRgMsl());
-
-      
-        return vendedor;
-    }
     /**
      * @param args the command line arguments
      */

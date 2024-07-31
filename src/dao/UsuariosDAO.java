@@ -45,7 +45,7 @@ public class UsuariosDAO extends DAO_Abstract {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuariosMsl.class);
-        criteria.add(Restrictions.eq("idusuarios_msl", id));
+        criteria.add(Restrictions.eq("idusuariosMsl", id));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
@@ -93,13 +93,13 @@ public class UsuariosDAO extends DAO_Abstract {
             System.out.println("nome:" + ((UsuariosMsl)usuariosMsl).getNomeMsl());
         }
     }
-    public UsuariosMsl login(String usuario, String senha) {
-    session.beginTransaction();
-    Criteria criteria = session.createCriteria(UsuariosMsl.class);
-    criteria.add(Restrictions.eq("nomeMsl", usuario));
-    criteria.add(Restrictions.eq("senhaMsl", senha));
-    UsuariosMsl usuarioAutenticado = (UsuariosMsl) criteria.uniqueResult();
-    session.getTransaction().commit();
-    return usuarioAutenticado;
-    }
+   // public UsuariosMsl login(String usuario, String senha) {
+    //session.beginTransaction();
+    //Criteria criteria = session.createCriteria(UsuariosMsl.class);
+    //criteria.add(Restrictions.eq("nomeMsl", usuario));
+    //criteria.add(Restrictions.eq("senhaMsl", senha));
+    //UsuariosMsl usuarioAutenticado = (UsuariosMsl) criteria.uniqueResult();
+    //session.getTransaction().commit();
+    //return usuarioAutenticado;
+   // }
 }

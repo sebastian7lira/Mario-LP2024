@@ -9,8 +9,7 @@ import bean.ProdutoMsl;
 import dao.ProdutoDAO;
 import java.util.List;
 import tools.UtilMsl;
-import viewControle.ProdutoControle;
-import viewPesquisa.JDlgProdutoNovo;
+
 
 /**
  *
@@ -18,10 +17,7 @@ import viewPesquisa.JDlgProdutoNovo;
  */
 public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         private boolean incluindo;
-        JDlgProdutoNovo jDlgProdutoNovo;
-        ProdutoMsl produtoMsl;
-        ProdutoDAO produtoDAO;
-        public ProdutoControle produtoControle;
+
     /**
      * Creates new form JDlgProduto
      */
@@ -30,84 +26,9 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         initComponents();
         setTitle("Produto");
         setLocationRelativeTo(null);
-        produtoDAO = new ProdutoDAO();
+
     }
     
-     public ProdutoMsl viewBean() {
-         /*SetarId*/
-        ProdutoMsl produtoMsl = new ProdutoMsl();
-        int id = UtilMsl.strInt(jFmtCodigo.getText());
-        produtoMsl.setIdprodutoMsl(id);
-        /*SetarDoble*/
-        double preco = UtilMsl.strDouble(jFmtPreco_msl.getText());
-        produtoMsl.setPrecoMsl(preco);
-        /*SetarTexto*/
-        produtoMsl.setNomeMsl(JTxtNome_msl.getText());
-        produtoMsl.setDescricaoMsl(JTxtDescricao_msl.getText());
-        produtoMsl.setSerialMsl(jFmtSerial_msl.getText());
-        int quant = UtilMsl.strInt(jFmtQuantidade_msl.getText());
-        produtoMsl.setQuantidadeMsl(quant);
-        
-        
-        if (jCboCategoria_msl.getSelectedIndex() == 0) {
-            produtoMsl.setCategoriaMsl("Perifericos");
-        }else if(jCboCategoria_msl.getSelectedIndex() == 1){
-            produtoMsl.setCategoriaMsl("Consoles");
-        }else{
-            produtoMsl.setCategoriaMsl("Eletronicos Gerais");
-        }
-        if (jCboFornecedor_msl.getSelectedIndex() == 0) {
-            produtoMsl.setFornecedorMsl("ABNT Exports");
-        }else if(jCboFornecedor_msl.getSelectedIndex() == 1){
-            produtoMsl.setFornecedorMsl("Marcs Inc.");
-        }else{
-            produtoMsl.setFornecedorMsl("Brownie Org.");
-        }
-
-
-        return produtoMsl;
-    }
-    
-    public void beanView(ProdutoMsl produtoMsl) {
-        /*SetarId*/
-        String intStr = UtilMsl.intStr(produtoMsl.getIdprodutoMsl());
-        jFmtCodigo.setText(intStr);
-        /*SetarDoble*/
-        double salario = UtilMsl.strDouble(jFmtPreco_msl.getText());
-        produtoMsl.setPrecoMsl(salario);
-        
-        JTxtNome_msl.setText(produtoMsl.getNomeMsl());
-        JTxtDescricao_msl.setText(produtoMsl.getDescricaoMsl());
-        jFmtSerial_msl.setText(produtoMsl.getSerialMsl());
-        jTxtCategoria_msl.setText(produtoMsl.getCategoriaMsl());
-        String intStr2 = UtilMsl.intStr(produtoMsl.getQuantidadeMsl());
-        jFmtQuantidade_msl.setText(intStr2);
-        
-        String cat = produtoMsl.getCategoriaMsl();
-        if(cat.equals("Perifericos")){
-            jCboCategoria_msl.setSelectedIndex(0);
-        }else if(cat.equals("Consoles")){
-            jCboCategoria_msl.setSelectedIndex(1);
-        }else {
-            jCboCategoria_msl.setSelectedIndex(2);
-        }
-        
-        String forn = produtoMsl.getFornecedorMsl();
-        if(forn.equals("ABNT Exports")){
-            jCboFornecedor_msl.setSelectedIndex(0);
-        }else if(forn.equals("Marcs Inc.")){
-            jCboFornecedor_msl.setSelectedIndex(1);
-        }else {
-            jCboFornecedor_msl.setSelectedIndex(2);
-        }
-    }
-
-    public void setTelaAnterior(JDlgProdutoNovo jDlgProdutoNovo) {
-        this.jDlgProdutoNovo = jDlgProdutoNovo;
-    }
-    public void setIncluindo(boolean incluindo) {
-        this.incluindo = incluindo;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -331,26 +252,12 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         UtilMsl.mensagem("Operação Cancelada!");
-        UtilMsl.limparCampos(jFmtCodigo, jFmtPreco_msl, jFmtQuantidade_msl, jFmtSerial_msl, JTxtDescricao_msl, JTxtNome_msl, jTxtCategoria_msl, jCboCategoria_msl, jCboFornecedor_msl);
+        UtilMsl.limparCampos(jFmtCodigo, jFmtPreco_msl, jFmtQuantidade_msl, jFmtSerial_msl, JTxtDescricao_msl, JTxtNome_msl,  jCboCategoria_msl, jCboFornecedor_msl);
         this.dispose();
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        produtoMsl = viewBean();
-        produtoDAO = new ProdutoDAO();
-        if (incluindo) {
-            produtoDAO.insert(produtoMsl);
-            List lista = produtoDAO.listAll();
-            jDlgProdutoNovo.produtoControle.setList(lista);
-            UtilMsl.mensagem("Registro incluído com sucesso.");
-            jDlgProdutoNovo.setTelaAnterior(this);
-
-        } else {
-            produtoDAO.update(produtoMsl);
-            List lista = produtoDAO.listAll();
-            UtilMsl.mensagem("Registro alterado com sucesso.");
-        }
-        UtilMsl.limparCampos(jFmtCodigo, jFmtPreco_msl, jFmtQuantidade_msl, jFmtSerial_msl, JTxtDescricao_msl, JTxtNome_msl, jTxtCategoria_msl, jCboCategoria_msl, jCboFornecedor_msl);
+        UtilMsl.limparCampos(jFmtCodigo, jFmtPreco_msl, jFmtQuantidade_msl, jFmtSerial_msl, JTxtDescricao_msl, JTxtNome_msl,  jCboCategoria_msl, jCboFornecedor_msl);
         this.dispose();
     }//GEN-LAST:event_jBtnOkActionPerformed
 

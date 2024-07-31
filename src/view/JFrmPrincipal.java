@@ -171,7 +171,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMnuVendas_msl.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMnuVendas_msl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/Funcionario.png"))); // NOI18N
-        jMnuVendas_msl.setText("Vendas");
+        jMnuVendas_msl.setText("Vendas Produto");
         jMnuVendas_msl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMnuVendas_mslActionPerformed(evt);

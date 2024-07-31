@@ -6,64 +6,30 @@
 package view;
 
 import bean.ProdutoMsl;
-import bean.ProdutoVendasMsl;
+
 import dao.ClientesDAO;
 import dao.ProdutoDAO;
 import java.util.ArrayList;
 import java.util.List;
-import tools.Util;
+
 import tools.UtilMsl;
-import view.JDlgVendas;
-import viewControle.ProdutoVendasControle;
+
+
 
 /**
  *
  * @author Sebas ;0
  */
 public class JDlgVendasProdutos extends javax.swing.JDialog {
-    JDlgVendas jDlgVendas;
-   public ProdutoVendasControle produtoVendasControle;
-    ProdutoDAO produtoDAO;
-    /**
-     * Creates new form JDlgInclusaoVendas
-     */
+
     public JDlgVendasProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null); 
-        produtoVendasControle = new ProdutoVendasControle();
-        produtoDAO = new ProdutoDAO();
-                
-        
-        UtilMsl.habilitar(false, jTxtTotalMsl);
-        
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        List lista = new ArrayList();
-        List listaProdutos = produtoDAO.listAll();
-        for (int i = 0; i < listaProdutos.size(); i++) {
-            jCboProdutoMsl.addItem((ProdutoMsl) listaProdutos.get(i));
-        }
         
            
     }
-    public ProdutoVendasMsl viewBean() {
-        ProdutoVendasMsl produtovendasMsl = new ProdutoVendasMsl();
-        int quantidadeMsl = UtilMsl.strInt(jTxtQuantidadeMsl.getText());
-        double totalMsl = UtilMsl.strDouble(jTxtTotalMsl.getText());
-        produtovendasMsl.setProdutoMsl((ProdutoMsl) jCboProdutoMsl.getSelectedItem());
-        
-        return produtovendasMsl;
-  }
-    public void beanView(ProdutoVendasMsl produtoVendasMsl ) {
-        String intStr = UtilMsl.intStr(produtoVendasMsl.getQuantidadeMsl());
-        String totalMsl = UtilMsl.doubleStr(produtoVendasMsl.getValorUnitarioMsl());
-        jCboProdutoMsl.setSelectedItem(produtoVendasMsl.getProdutoMsl());
-           
-        }
-    public void setTelaAnterior(JDlgVendas jDlgVendas) {
-        this.jDlgVendas = jDlgVendas;
-
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +41,6 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jCboProdutoMsl = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -88,17 +53,6 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Produto");
-
-        jCboProdutoMsl.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCboProdutoMslItemStateChanged(evt);
-            }
-        });
-        jCboProdutoMsl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCboProdutoMslActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Quantidade");
 
@@ -152,7 +106,6 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCboProdutoMsl, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -181,9 +134,7 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCboProdutoMsl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -204,19 +155,6 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCboProdutoMslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboProdutoMslActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCboProdutoMslActionPerformed
-
-    private void jCboProdutoMslItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCboProdutoMslItemStateChanged
-    if (jCboProdutoMsl.getSelectedIndex() != -1) {
-            jTxtQuantidadeMsl.setText("1");
-            ProdutoMsl produtoMsl = (ProdutoMsl) jCboProdutoMsl.getSelectedItem();
-            jTxtValorUnitarioMsl.setText(UtilMsl.doubleStr(produtoMsl.getPrecoMsl()));
-            
-        }        
-    }//GEN-LAST:event_jCboProdutoMslItemStateChanged
-
     private void jTxtValorUnitarioMslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtValorUnitarioMslActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtValorUnitarioMslActionPerformed
@@ -226,13 +164,7 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtQuantidadeMslActionPerformed
 
     private void jTxtQuantidadeMslKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidadeMslKeyReleased
-    if (jTxtQuantidadeMsl.getText().isEmpty() == false) {
-            double unitario = UtilMsl.strDouble(jTxtValorUnitarioMsl.getText());
-            int quantidade = UtilMsl.strInt(jTxtQuantidadeMsl.getText());
-            jTxtTotalMsl.setText(String.valueOf(quantidade * unitario));
-        } else {
-            jTxtTotalMsl.setText("0");
-        }       
+    
     }//GEN-LAST:event_jTxtQuantidadeMslKeyReleased
 
     private void jTxtTotalMslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalMslActionPerformed
@@ -247,19 +179,7 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ProdutoVendasMsl produtovendasMsl = new ProdutoVendasMsl();
-        ProdutoVendasControle vendas = new ProdutoVendasControle();
-        produtovendasMsl.setProdutoMsl((ProdutoMsl) jCboProdutoMsl.getSelectedItem());
-        produtovendasMsl.setQuantidadeMsl(UtilMsl.strInt(jTxtQuantidadeMsl.getText()));
-        produtovendasMsl.setValorUnitarioMsl((int) UtilMsl.strDouble(jTxtValorUnitarioMsl.getText()));
-        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
-            
-            jDlgVendas.produtoVendasControle.addBean(produtovendasMsl);
-        } else {
-            jDlgVendas.produtoVendasControle.updateBean(jDlgVendas.getSelectedRowProd(), produtovendasMsl);
-        }
-        Util.limparCampos(jTxtQuantidadeMsl);
-        setVisible(false);          // TODO add your handling code here:
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -310,7 +230,6 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<ProdutoDbc> jCboProdutoMsl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -5,7 +5,7 @@
  */
 package dao;
 
-import bean.ProdutoVendasMsl;
+import bean.ProdutoVendaMsl;
 import bean.VendasMsl;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -43,7 +43,7 @@ public class ProdutoVendasDAO  extends DAO_Abstract{
     @Override
     public Object list(int id) {
      session.beginTransaction();
-        Criteria criteria = session.createCriteria(ProdutoVendasMsl.class);
+        Criteria criteria = session.createCriteria(ProdutoVendaMsl.class);
         criteria.add(Restrictions.eq("idProdutovendas", id));
         List lista = criteria.list();
         session.getTransaction().commit();        
@@ -53,22 +53,22 @@ public class ProdutoVendasDAO  extends DAO_Abstract{
     @Override
     public List listAll() {
          session.beginTransaction();
-        Criteria criteria = session.createCriteria(ProdutoVendasMsl.class);
+        Criteria criteria = session.createCriteria(ProdutoVendaMsl.class);
 //        List lista = criteria.list();
         session.getTransaction().commit();  
         List lista = new ArrayList();
         return lista;
         
-//        public List<VendasBjf> listAll() {
+//        public List<VendaBjf> listAll() {
 //    session.beginTransaction();
-//    Criteria criteria = session.createCriteria(VendasBjf.class);
-//    List<VendasBjf> lista = criteria.list();
+//    Criteria criteria = session.createCriteria(VendaBjf.class);
+//    List<VendaBjf> lista = criteria.list();
 //    session.getTransaction().commit(); 
 //    return lista;
 }
-     public List listProduto(ProdutoVendasMsl produtovendasMsl){
+     public List listProduto(ProdutoVendaMsl produtovendasMsl){
        session.beginTransaction();
-        Criteria criteria = session.createCriteria(ProdutoVendasMsl.class);
+        Criteria criteria = session.createCriteria(ProdutoVendaMsl.class);
         criteria.add( Restrictions.eq("produtoMsl", produtovendasMsl));
         List lista = criteria.list();
         session.getTransaction().commit();

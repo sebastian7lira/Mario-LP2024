@@ -39,8 +39,8 @@ public class JDlgClientes extends javax.swing.JDialog {
         setTitle("Clientes");
         setLocationRelativeTo(null);
         
-        UtilMsl.habilitar(false, jCboFormacao_msl,jBtnAlterar,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
-        UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+        UtilMsl.habilitar(false, jCboFormacao_msl,jBtnAlterar,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+        UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
         jBtnIncluir.setEnabled(true);
         
         
@@ -63,92 +63,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     }
     
     
-    public ClienteMsl viewBean() {
-        /*SetarID*/
-        ClienteMsl clienteMsl = new ClienteMsl();
-        //int id = UtilMsl.strInt(jTxtCodigo_msl.getText());
-       // clienteMsl.setIdclienteMsl(id);
-        
-        /*SetarDatas*/
-        //Date dataNascimento = UtilMsl.strDate(jFmtData_msl.getText());
-        //clienteMsl.setDataNascMsl(dataNascimento);
-        //Date dataRegistro = UtilMsl.strDate(jFmtDataRegistro_msl.getText());
-       // clienteMsl.setDataRegistroMsl(dataRegistro);
-        /*SetarTextos*/
-        clienteMsl.setNomeMsl(jTxtNome_msl.getText());
-        clienteMsl.setProfissaoMsl(JTxtProfissao_msl.getText());
-        clienteMsl.setCpfMsl(jFmtCpf_msl.getText());
-        clienteMsl.setEmailMsl(JTxtEmail_msl.getText());
-        clienteMsl.setEnderecoMsl(JTxtEndereco_msl.getText());
-        clienteMsl.setCidadeMsl(JTxtCidade_msl.getText());
-        clienteMsl.setTelefoneMsl(jFmtTelefone_msl.getText());
-        clienteMsl.setEstadoMsl(JTxtEstado_msl.getText());
-        clienteMsl.setCepMsl(jFmtCep_msl.getText());
-        clienteMsl.setRgMsl(jFmtRg_msl.getText());  
-        /*SetarCombo*/
-        if ((JCboEstadoCivil_msl.getSelectedIndex() == 0)) {
-            clienteMsl.setEstadoCivilMsl("Solteiro");
-        } else if ((JCboEstadoCivil_msl.getSelectedIndex() == 1)) {
-            clienteMsl.setEstadoCivilMsl("Casado");
-        } else if ((JCboEstadoCivil_msl.getSelectedIndex() == 2)) {
-            clienteMsl.setEstadoCivilMsl("Viuvo");
-        } else {
-            clienteMsl.setEstadoCivilMsl("Namorando");
-        }
-        if ((jCboFormacao_msl.getSelectedIndex() == 0)) {
-            clienteMsl.setFormacaoMsl("Fundamental");
-        } else if ((jCboFormacao_msl.getSelectedIndex() == 1)) {
-            clienteMsl.setFormacaoMsl("Medio");
-        } else {
-            clienteMsl.setFormacaoMsl("Superior");
-        }
-        return clienteMsl;
-    }
     
-    public void beanView(ClienteMsl clienteMsl) {
-        /*SetarId*/
-        String intStr = UtilMsl.intStr(clienteMsl.getIdclienteMsl());
-        jTxtCodigo_msl.setText(intStr);
-        /*SetarDatas*/
-        jFmtData_msl.setText(UtilMsl.dateStr(clienteMsl.getDataNascMsl()));
-        jFmtDataRegistro_msl.setText(UtilMsl.dateStr(clienteMsl.getDataRegistroMsl()));
-        
-        /*SetarTextos*/
-        jTxtNome_msl.setText(clienteMsl.getNomeMsl());
-        jFmtCep_msl.setText(clienteMsl.getCepMsl());
-        JTxtProfissao_msl.setText(clienteMsl.getProfissaoMsl());
-        JTxtEmail_msl.setText(clienteMsl.getEmailMsl());
-        jFmtCpf_msl.setText(clienteMsl.getCpfMsl());
-        JTxtEndereco_msl.setText(clienteMsl.getEnderecoMsl());
-        JTxtCidade_msl.setText(clienteMsl.getCidadeMsl());
-        jFmtTelefone_msl.setText(clienteMsl.getTelefoneMsl());
-        JTxtEstado_msl.setText(clienteMsl.getEstadoMsl());
-        jFmtRg_msl.setText(clienteMsl.getRgMsl());
-        
-        /*SetarCombo*/
-        String estadoCivil =clienteMsl.getEstadoCivilMsl();
-        if(estadoCivil.equals("Solteiro")){
-            JCboEstadoCivil_msl.setSelectedIndex(0);
-        }else if(estadoCivil.equals("Casado")){
-            JCboEstadoCivil_msl.setSelectedIndex(1);
-        }else if(estadoCivil.equals("Viuvo")){
-            JCboEstadoCivil_msl.setSelectedIndex(2);
-        }else if(estadoCivil.equals("Divorciado")){
-            JCboEstadoCivil_msl.setSelectedIndex(3);
-        }else {
-            JCboEstadoCivil_msl.setSelectedIndex(4);
-        }
-        
-        String formacao =clienteMsl.getFormacaoMsl();
-        if(formacao.equals("Fundamental")){
-            jCboFormacao_msl.setSelectedIndex(0);
-        }else if(formacao.equals("Medio")){
-            jCboFormacao_msl.setSelectedIndex(1);
-        }else {
-            jCboFormacao_msl.setSelectedIndex(2);
-        }
-        
-    }
 
 
     /**
@@ -519,59 +434,39 @@ public class JDlgClientes extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
     incl = true;
-    UtilMsl.habilitar(true, jBtnConfirmar,jCboFormacao_msl,jCboFormacao_msl, jBtnCancelar, jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.habilitar(true, jBtnConfirmar,jCboFormacao_msl,jCboFormacao_msl, jBtnCancelar, jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     UtilMsl.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-    UtilMsl.limparCampos(jBtnAlterar,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.limparCampos(jBtnAlterar,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
     incl = false;
-    UtilMsl.habilitar(true, jBtnConfirmar,jCboFormacao_msl, jBtnCancelar,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.habilitar(true, jBtnConfirmar,jCboFormacao_msl, jBtnCancelar,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     UtilMsl.habilitar(false, jBtnIncluir,jBtnAlterar, jBtnExcluir, jBtnPesquisar, jTxtCodigo_msl);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-    ClienteMsl clienteMsl = viewBean();
-    ClientesDAO clientesDAO = new ClientesDAO();
-    
-    if (incl == true) {
-        clientesDAO.insert(clienteMsl);
-        UtilMsl.mensagem("Registro incluido com sucesso.");
-    } else {
-        clientesDAO.update(clienteMsl);
-        UtilMsl.mensagem("Registro alterado com sucesso.");
-        }
-    UtilMsl.habilitar(false, jCboFormacao_msl,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.habilitar(false, jCboFormacao_msl,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     UtilMsl.habilitar(true, jBtnIncluir,jBtnPesquisar);
-    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-    jDlgClientesPesquisa = new JDlgClientesPesquisa(null, true);
-    jDlgClientesPesquisa.setTitle("Pesquisar");
-    jDlgClientesPesquisa.setTelaAnterior(this);
-    jDlgClientesPesquisa.setVisible(true);
+   
     UtilMsl.habilitar(true, jBtnAlterar, jBtnExcluir, jBtnIncluir);
     UtilMsl.habilitar(false, jBtnCancelar, jBtnConfirmar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
     UtilMsl.mensagem("Operação Cancelada!");
-    UtilMsl.habilitar(false, jBtnCancelar,jCboFormacao_msl, jBtnConfirmar, jBtnAlterar, jBtnExcluir, jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.habilitar(false, jBtnCancelar,jCboFormacao_msl, jBtnConfirmar, jBtnAlterar, jBtnExcluir, jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     UtilMsl.habilitar(true, jBtnIncluir, jBtnPesquisar);
-    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-    if (UtilMsl.perguntar("Deseja excluir o registro?") == true) {
-        ClienteMsl clienteMsl = viewBean();
-        ClientesDAO clientesDAO = new ClientesDAO();
-        clientesDAO.delete(clienteMsl);
-        UtilMsl.mensagem("Registro Excluido.");
-    }else{
-        UtilMsl.mensagem("Exclusão Cancelada.");
-       }
-    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,jFmtRg_Msl,jFmtCpf_Msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
+    
+    UtilMsl.limparCampos(jBtnAlterar,jCboFormacao_msl,jBtnCancelar,jBtnConfirmar,jBtnExcluir,jTxtCodigo_msl,jTxtNome_msl,jFmtData_msl,JTxtEmail_msl,JCboEstadoCivil_msl,jFmtCep_msl,JTxtProfissao_msl,JTxtEndereco_msl,JTxtEstado_msl,JTxtCidade_msl,jFmtTelefone_msl,jFmtDataRegistro_msl);
     }//GEN-LAST:event_jBtnExcluirActionPerformed
  
     private void jFmtData_mslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtData_mslActionPerformed
