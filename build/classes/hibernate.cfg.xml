@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_mario_lira?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">mario_lira</property>
+    <property name="hibernate.connection.password">mario_lira</property>
+    <mapping class="bean.ProdutoMsl"/>
+    <mapping class="bean.VendasMsl"/>
+    <mapping class="bean.ProdutoVendaMsl"/>
+    <mapping class="bean.UsuariosMsl"/>
+    <mapping class="bean.ClienteMsl"/>
+    <mapping class="bean.FuncionarioMsl"/>
+  </session-factory>
+</hibernate-configuration>

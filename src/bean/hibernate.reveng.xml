@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="db_mario_lira"/>
+  <table-filter match-name="produtoMsl"/>
+  <table-filter match-name="produtoVendaMsl"/>
+  <table-filter match-name="vendasMsl"/>
+  <table-filter match-name="funcionarioMsl"/>
+  <table-filter match-name="usuariosMsl"/>
+  <table-filter match-name="clienteMsl"/>
+</hibernate-reverse-engineering>
