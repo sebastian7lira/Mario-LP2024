@@ -49,7 +49,8 @@ public class JDlgProduto extends javax.swing.JDialog {
         produto.setDescricaoMsl(jTxtDescricaoMsl.getText());
         
         produto.setCategoriaMsl(jTxtCategoriaMsl.getText());
-        //produto.setPrecoMsl(jTxtPrecoMsl.getText());
+        produto.setPrecoMsl(UtilMsl.strDouble(jTxtPrecoMsl.getText()));
+        
         produto.setFornecedorMsl(jTxtFornecedorMsl.getText());
        
         
@@ -64,7 +65,7 @@ public class JDlgProduto extends javax.swing.JDialog {
         jTxtNomeMsl.setText(produto.getNomeMsl());
         jTxtDescricaoMsl.setText(produto.getDescricaoMsl());
         jTxtCategoriaMsl.setText(produto.getCategoriaMsl());
-        //jTxtPrecoMsl.setText(produto.getPrecoMsl());
+        jTxtPrecoMsl.setText(UtilMsl.doubleStr(produto.getPrecoMsl()));
         jTxtFornecedorMsl.setText(produto.getFornecedorMsl());
       
         
