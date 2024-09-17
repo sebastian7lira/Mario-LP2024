@@ -60,6 +60,37 @@ public class ClienteDAO extends DAO_Abstract {
         return lista;
         
     }
-
+ public List listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClienteMsl.class);
+        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    public List listCpf(String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClienteMsl.class);
+        criteria.add(Restrictions.like("cpfMsl", "%" + cpf + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    public List listNomeCpf(String nome, String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClienteMsl.class);
+        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
+        criteria.add(Restrictions.like("cpfMsl", "%" + cpf + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    public static void main(String[] args) {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        List lista = clienteDAO.listNome("nome que você está procurando");
+        for (Object clienteMsl : lista) {
+            System.out.println("nome:" + ((ClienteMsl)clienteMsl).getNomeMsl());
+        }
+    }
 
 }

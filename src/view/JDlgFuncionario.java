@@ -53,8 +53,8 @@ public class JDlgFuncionario extends javax.swing.JDialog {
         funcionario.setDepartamentoMsl(jTxtDepartamentoMsl.getText());
         funcionario.setInformacoesMsl(jTxtInformacoesMsl.getText());
         
-        
-      //  funcionario.setSalarioMsl(null);//jTxtSalarioMsl.getText();
+        funcionario.setSalarioMsl(UtilMsl.strDouble(jTxtSalarioMsl.getText()));
+      
 
       
 
@@ -74,8 +74,8 @@ public class JDlgFuncionario extends javax.swing.JDialog {
         jTxtDepartamentoMsl.setText(funcionario.getDepartamentoMsl());
         jTxtInformacoesMsl.setText(funcionario.getInformacoesMsl());
         
-        //  funcionario.setSalarioMsl(null);//jTxtSalarioMsl.getText();
-
+        
+         jTxtSalarioMsl.setText(UtilMsl.doubleStr(funcionario.getSalarioMsl()));
         
         
         jBtnAlterar.setEnabled(true);

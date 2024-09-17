@@ -117,7 +117,7 @@ public class JDlgVendas extends javax.swing.JDialog {
     }
     
     
-    // Método para capturar os dados da tela e convertê-los em um objeto de venda
+   
      public VendasMsl viewBean() {
          /*SetarID*/
         VendasMsl vendasMsl = new VendasMsl();
@@ -136,7 +136,7 @@ public class JDlgVendas extends javax.swing.JDialog {
      }
      
      
-    // Método para exibir os dados de uma venda na tela (preenche os campos com dados da venda) 
+   
      public void beanView(VendasMsl vendasMsl) {
          strykeMsl = vendasMsl;
          /*SetarID*/

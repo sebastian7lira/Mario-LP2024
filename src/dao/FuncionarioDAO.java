@@ -59,5 +59,37 @@ public class FuncionarioDAO extends DAO_Abstract{
         return lista;
         
     }
-   
+   public List listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioMsl.class);
+        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    public List listSalario(double salario) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioMsl.class);
+        criteria.add(Restrictions.eq("salarioMsl", salario));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+    public List listNomeSalario(String nome, double salario) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FuncionarioMsl.class);
+        criteria.add(Restrictions.like("nomeMsl", "%" + nome + "%"));
+        criteria.add(Restrictions.eq("salarioMsl", salario));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+
+    public static void main(String[] args) {
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+        List lista = funcionarioDAO.listNome("nome que você está procurando");
+        for (Object funcionarioMsl : lista) {
+            System.out.println("nome:" + ((FuncionarioMsl)funcionarioMsl).getNomeMsl());
+        }
+    }
 }

@@ -211,7 +211,7 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jCboProdutoMslActionPerformed
 
     private void jCboProdutoMslItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCboProdutoMslItemStateChanged
-        if (jCboProdutoMsl.getSelectedIndex() != -1) {
+        if (jCboProdutoMsl.getSelectedIndex() != -1) { //-1 indica que nenhum item foi selecionado.            
             jTxtQuantidadeMsl.setText("1");
             ProdutoMsl produtoMsl = (ProdutoMsl) jCboProdutoMsl.getSelectedItem();
             jTxtValorUnitarioMsl.setText(UtilMsl.doubleStr(produtoMsl.getPrecoMsl()));
@@ -228,13 +228,14 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtQuantidadeMslActionPerformed
 
     private void jTxtQuantidadeMslKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidadeMslKeyReleased
-        if (jTxtQuantidadeMsl.getText().isEmpty() == false) {
-            double unitario = UtilMsl.strDouble(jTxtValorUnitarioMsl.getText());
-            int quantidade = UtilMsl.strInt(jTxtQuantidadeMsl.getText());
-            jTxtTotalMsl.setText(String.valueOf(quantidade * unitario));
-        } else {
-            jTxtTotalMsl.setText("0");
-        }
+    if (jTxtQuantidadeMsl.getText().isEmpty() == false) { // Verifica se o não está vazio
+    double unitario = UtilMsl.strDouble(jTxtValorUnitarioMsl.getText()); // Converte de texto para um double
+    int quantidade = UtilMsl.strInt(jTxtQuantidadeMsl.getText()); // Converte de texto para um inteiro
+    jTxtTotalMsl.setText(String.valueOf(quantidade * unitario)); 
+} else {
+    jTxtTotalMsl.setText("0"); // Se o campo de quantidade estiver vazio, define o total como "0"
+}
+
     }//GEN-LAST:event_jTxtQuantidadeMslKeyReleased
 
     private void jTxtTotalMslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalMslActionPerformed
