@@ -92,5 +92,6 @@ public class ClienteDAO extends DAO_Abstract {
             System.out.println("nome:" + ((ClienteMsl)clienteMsl).getNomeMsl());
         }
     }
+    
 
 }

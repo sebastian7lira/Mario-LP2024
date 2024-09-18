@@ -121,7 +121,10 @@ public class ProdutoMsl  implements java.io.Serializable {
         this.fornecedorMsl = fornecedorMsl;
     }
 
-
+@Override
+public String toString() {
+return this.nomeMsl; 
+}
 
 
 

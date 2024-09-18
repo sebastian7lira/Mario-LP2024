@@ -206,7 +206,10 @@ public class ClienteMsl  implements java.io.Serializable {
         this.formacaoMsl = formacaoMsl;
     }
 
-
+@Override
+public String toString() {
+return this.nomeMsl; 
+}
 
 
 }
